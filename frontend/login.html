@@ -101,133 +101,62 @@
 
   <!-- JS: role switching + simple submit (client-side only) -->
   <script>
-    (function () {
-      const tabs = document.querySelectorAll('.role-tab');
-      const roleInput = document.getElementById('role');
-      const donorFields = document.getElementById('donor-fields');
-      const form = document.getElementById('login-form');
-      const feedback = document.getElementById('feedback');
+(function () {
+  const tabs = document.querySelectorAll('.role-tab');
+  const roleInput = document.getElementById('role');
+  const donorFields = document.getElementById('donor-fields');
+  const form = document.getElementById('login-form');
+  const feedback = document.getElementById('feedback');
 
-      // initialize (donor active)
-      let activeRole = 'donor';
+  // Check query string for role (e.g. login.html?role=recipient)
+  const urlParams = new URLSearchParams(window.location.search);
+  let activeRole = urlParams.get("role") || "donor";
 
-      function setActiveRole(role) {
-        activeRole = role;
-        roleInput.value = role;
+  function setActiveRole(role) {
+    activeRole = role;
+    roleInput.value = role;
 
-        // update tab styles
-        tabs.forEach(t => {
-          if (t.dataset.role === role) {
-            t.classList.add('bg-green-600', 'text-white', 'font-semibold');
-            t.classList.remove('bg-gray-100', 'text-gray-700');
-          } else {
-            t.classList.remove('bg-green-600', 'text-white', 'font-semibold');
-            t.classList.add('bg-gray-100', 'text-gray-700');
-          }
-        });
-
-        // show/hide donor-only field
-        donorFields.style.display = (role === 'donor') ? 'block' : 'none';
+    // update tab styles
+    tabs.forEach(t => {
+      if (t.dataset.role === role) {
+        t.classList.add('bg-green-600', 'text-white', 'font-semibold');
+        t.classList.remove('bg-gray-100', 'text-gray-700');
+      } else {
+        t.classList.remove('bg-green-600', 'text-white', 'font-semibold');
+        t.classList.add('bg-gray-100', 'text-gray-700');
       }
+    });
 
-      tabs.forEach(t => t.addEventListener('click', () => setActiveRole(t.dataset.role)));
-
-      // set initial UI
-      setActiveRole(activeRole);
-
-      // simple form validation + demo submit handler
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        feedback.classList.add('hidden');
-
-        const identifier = document.getElementById('identifier').value.trim();
-        const password = document.getElementById('password').value.trim();
-
-        if (!identifier || !password) {
-          feedback.textContent = 'Please enter both identifier and password.';
-          feedback.classList.remove('hidden');
-          return;
-        }
-
-        // Demo: choose redirect by role (replace with real API call)
-        // Example of a fetch POST (commented out)
-        /*
-        fetch('/api/login', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ role: activeRole, identifier, password })
-        })
-        .then(r => r.json())
-        .then(data => {
-          if (data.success) {
-            window.location.href = `/${activeRole}.html`; // or dashboard route
-          } else {
-            feedback.textContent = data.message || 'Login failed';
-            feedback.classList.remove('hidden');
-          }
-        })
-        .catch(err => { feedback.textContent = 'Network error'; feedback.classList.remove('hidden'); });
-        */
-
-        // Demo (local redirect)
-        // In production you must authenticate on server
-        if (activeRole === 'donor') window.location.href = 'donor.html';
-        else if (activeRole === 'recipient') window.location.href = 'recipient.html';
-        else window.location.href = 'volunteer.html';
-      });
-    })();
-        // Get role from query string
-const urlParams = new URLSearchParams(window.location.search);
-const roleFromUrl = urlParams.get("role");
-
-// Default active role
-let activeRole = roleFromUrl || "donor";
-
-// Update active button and form based on role
-function setActiveRole(role) {
-  activeRole = role;
-  
-  document.querySelectorAll("#role-tabs button").forEach(btn => {
-    btn.classList.remove("bg-green-600", "text-white");
-    btn.classList.add("bg-gray-200", "text-gray-700");
-  });
-
-  const activeBtn = document.querySelector(`#role-tabs button[data-role="${role}"]`);
-  if (activeBtn) {
-    activeBtn.classList.remove("bg-gray-200", "text-gray-700");
-    activeBtn.classList.add("bg-green-600", "text-white");
+    // show/hide donor-only field
+    donorFields.style.display = (role === 'donor') ? 'block' : 'none';
   }
 
-  document.getElementById("role-title").textContent = role.charAt(0).toUpperCase() + role.slice(1);
-}
-    // Get role from query string
-const urlParams = new URLSearchParams(window.location.search);
-const roleFromUrl = urlParams.get("role");
+  tabs.forEach(t => t.addEventListener('click', () => setActiveRole(t.dataset.role)));
 
-// Default active role
-let activeRole = roleFromUrl || "donor";
+  // Set initial role
+  setActiveRole(activeRole);
 
-// Update active button and form based on role
-function setActiveRole(role) {
-  activeRole = role;
-  
-  document.querySelectorAll("#role-tabs button").forEach(btn => {
-    btn.classList.remove("bg-green-600", "text-white");
-    btn.classList.add("bg-gray-200", "text-gray-700");
+  // Form submission
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    feedback.classList.add('hidden');
+
+    const identifier = document.getElementById('identifier').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!identifier || !password) {
+      feedback.textContent = 'Please enter both identifier and password.';
+      feedback.classList.remove('hidden');
+      return;
+    }
+
+    // Demo redirect (replace with server login later)
+    if (activeRole === 'donor') window.location.href = 'donor.html';
+    else if (activeRole === 'recipient') window.location.href = 'recipient.html';
+    else window.location.href = 'volunteer.html';
   });
+})();
+</script>
 
-  const activeBtn = document.querySelector(`#role-tabs button[data-role="${role}"]`);
-  if (activeBtn) {
-    activeBtn.classList.remove("bg-gray-200", "text-gray-700");
-    activeBtn.classList.add("bg-green-600", "text-white");
-  }
-
-  document.getElementById("role-title").textContent = role.charAt(0).toUpperCase() + role.slice(1);
-}
-
-// Initialize role from URL
-setActiveRole(activeRole);
-
-  </script>
 </body>
 </html>
