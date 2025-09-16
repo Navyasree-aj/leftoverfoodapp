@@ -22,6 +22,86 @@
     </div>
   </nav>
 
+  <!-- WHY DONATE -->
+  <section class="bg-green-50 border-b border-green-200 py-10 px-6 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-green-700">Why Donate?</h2>
+      <p class="text-gray-700 mt-4 text-lg">
+        Every meal you share helps reduce food waste and feed someone in need.  
+        By donating surplus food, you’re supporting <span class="font-semibold">Zero Hunger (SDG 2)</span>  
+        and building a more sustainable, compassionate community.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow py-10 px-4 max-w-7xl mx-auto">
+
+    <!-- Greeting -->
+    <header class="mb-8">
+      <h2 class="text-3xl font-bold text-gray-900">Welcome, Donor 👋</h2>
+      <p class="text-gray-600 mt-1">Thank you for helping reduce food waste and support the community.</p>
+    </header>
+
+    <!-- GRID: Donation Form + Past Donations -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Donation Form -->
+      <section class="md:col-span-2 bg-white shadow-lg rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Offer a New Donation</h3>
+        <form id="donation-form" class="space-y-4">
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Food Type</label>
+            <input type="text" name="foodType" placeholder="e.g., Fresh bread, Rice, Curry"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input type="text" name="quantity" placeholder="e.g., 20 servings, 10kg"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Pickup Address</label>
+            <textarea name="address" rows="3" placeholder="e.g., Tasty Bites Restaurant, MG Road, City"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Pickup Time</label>
+            <input type="datetime-local" name="pickupTime"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <button type="submit"
+            class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
+            Submit Donation
+          </button>
+        </form>
+      </section>
+
+      <!-- Past Donations -->
+      <aside class="bg-white shadow-lg rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Recent Donations</h3>
+        <ul class="space-y-4 text-sm">
+          <li class="border-b pb-2">
+            <p class="font-medium text-gray-900">5kg Cooked Rice</p>
+            <p class="text-gray-600">Pickup: Sep 14, 6:00 PM</p>
+          </li>
+          <li class="border-b pb-2">
+            <p class="font-medium text-gray-900">20 Sandwiches</p>
+            <p class="text-gray-600">Pickup: Sep 10, 1:00 PM</p>
+          </li>
+          <li>
+            <p class="text-gray-500 italic">More donations will appear here…</p>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 mt-auto">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
@@ -29,5 +109,16 @@
       <p class="mt-2 md:mt-0">Working towards <span class="font-semibold">SDG 2: Zero Hunger</span>.</p>
     </div>
   </footer>
+
+  <!-- JS: Simple form handler (demo only) -->
+  <script>
+    document.getElementById('donation-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert("Thank you! Your donation has been recorded.");
+      this.reset();
+    });
+  </script>
+
 </body>
 </html>
+
