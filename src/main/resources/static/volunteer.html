@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FeastForward - Volunteer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+    <div class="space-x-6">
+      <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
+      <a href="donor.html" class="text-gray-700 hover:text-green-600">Donor</a>
+      <a href="recipient.html" class="text-gray-700 hover:text-green-600">Recipient</a>
+      <a href="volunteer.html" class="text-yellow-500 font-semibold">Volunteer</a>
+      <a href="login.html" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Intro -->
+<section class="bg-green-50 border-b border-green-200 py-10 px-6 text-center">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold text-green-700">Volunteer Hub</h2>
+    <p class="text-gray-700 mt-4 text-lg">
+      Donors can find helping hands. Volunteers can sign up and join our mission
+      to achieve <span class="font-semibold">Zero Hunger (SDG 2)</span>.
+    </p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<main class="flex-grow max-w-6xl mx-auto py-10 px-4">
+
+  <!-- Tabs -->
+  <div class="flex justify-center mb-8 gap-4">
+    <button id="tab-find" class="tab-btn px-4 py-2 bg-green-600 text-white rounded-lg font-semibold">Find Volunteers</button>
+    <button id="tab-join" class="tab-btn px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg">Become a Volunteer</button>
+  </div>
+
+  <!-- FIND VOLUNTEERS -->
+  <section id="find-section" class="bg-white shadow-lg rounded-xl p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Available Volunteers</h3>
+    <div id="volunteer-list" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- volunteers will be injected here -->
+    </div>
+  </section>
+
+  <!-- BECOME A VOLUNTEER -->
+  <section id="join-section" class="bg-white shadow-lg rounded-xl p-6 hidden">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Join as a Volunteer</h3>
+    <form id="join-form" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" name="name" class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Age</label>
+        <input type="number" name="age" class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Location</label>
+        <input type="text" name="location" class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" name="phone" class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" name="email" class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required>
+      </div>
+      <button type="submit" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
+        Submit & Save Info
+      </button>
+    </form>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-6 mt-auto">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <p>© 2025 FeastForward. All rights reserved.</p>
+    <p class="mt-2 md:mt-0">Working towards <span class="font-semibold">SDG 2: Zero Hunger</span>.</p>
+  </div>
+</footer>
+
+<script>
+// --- demo volunteer data for donors to view ---
+let volunteers = JSON.parse(localStorage.getItem("ff_volunteers")) || [
+  {name:"Aisha Khan", place:"Delhi", age:22, availability:"Weekends", email:"aisha@example.com"},
+  {name:"Ravi Kumar", place:"Mumbai", age:30, availability:"Anytime", email:"ravi@example.com"},
+  {name:"Sneha Patel", place:"Bengaluru", age:27, availability:"Weekdays", email:"sneha@example.com"}
+];
+
+function renderVolunteers() {
+  const list = document.getElementById('volunteer-list');
+  list.innerHTML = "";
+  volunteers.forEach(v => {
+    const card = document.createElement('div');
+    card.className = "border rounded-lg p-4 shadow-sm";
+    card.innerHTML = `
+      <h4 class="text-lg font-semibold text-green-700">${v.name}</h4>
+      <p class="text-gray-700">Place: ${v.place}</p>
+      <p class="text-gray-700">Age: ${v.age}</p>
+      <p class="text-gray-700">Availability: ${v.availability}</p>
+      <p class="text-gray-700">Email: <a href="mailto:${v.email}" class="text-green-600 hover:underline">${v.email}</a></p>
+    `;
+    list.appendChild(card);
+  });
+}
+renderVolunteers();
+
+// --- Tab switching ---
+const findTab = document.getElementById('tab-find');
+const joinTab = document.getElementById('tab-join');
+const findSection = document.getElementById('find-section');
+const joinSection = document.getElementById('join-section');
+
+function setTab(tab){
+  if(tab==="find"){
+    findSection.classList.remove("hidden");
+    joinSection.classList.add("hidden");
+    findTab.classList.add("bg-green-600","text-white","font-semibold");
+    findTab.classList.remove("bg-gray-100","text-gray-700");
+    joinTab.classList.remove("bg-green-600","text-white","font-semibold");
+    joinTab.classList.add("bg-gray-100","text-gray-700");
+  } else {
+    joinSection.classList.remove("hidden");
+    findSection.classList.add("hidden");
+    joinTab.classList.add("bg-green-600","text-white","font-semibold");
+    joinTab.classList.remove("bg-gray-100","text-gray-700");
+    findTab.classList.remove("bg-green-600","text-white","font-semibold");
+    findTab.classList.add("bg-gray-100","text-gray-700");
+  }
+}
+findTab.addEventListener('click', ()=>setTab("find"));
+joinTab.addEventListener('click', ()=>setTab("join"));
+
+// --- Join form handler: save info to localStorage ---
+document.getElementById('join-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(this).entries());
+  volunteers.push({
+    name:data.name,
+    place:data.location,
+    age:data.age,
+    availability:"Anytime",
+    phone:data.phone, // internal use only
+    email:data.email
+  });
+  localStorage.setItem("ff_volunteers", JSON.stringify(volunteers));
+  alert("Thank you for volunteering! Your details are saved locally.");
+  this.reset();
+  setTab("find");
+  renderVolunteers();
+});
+</script>
+</body>
+</html>

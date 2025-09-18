@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FeastForward - Recipient</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <div class="space-x-6">
+        <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
+        <a href="donor.html" class="text-gray-700 hover:text-green-600">Donor</a>
+        <a href="recipient.html" class="text-yellow-500 font-semibold">Recipient</a>
+        <a href="volunteer.html" class="text-gray-700 hover:text-green-600">Volunteer</a>
+        <a href="login.html?role=recipient" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Recipient Info Section -->
+  <section class="py-16 text-center bg-green-100">
+    <h2 class="text-3xl font-bold text-green-700">Welcome, Recipient!</h2>
+    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+      FeastForward connects you with nearby donors offering surplus food. Whether you're an individual or part of a community organization, you can request fresh, safe meals with ease.
+    </p>
+  </section>
+
+  <!-- Request Process -->
+  <section class="py-12 max-w-6xl mx-auto px-6">
+    <h3 class="text-2xl font-bold text-green-700 text-center">How to Request Food</h3>
+    <div class="mt-8 grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <h4 class="text-xl font-semibold text-green-600">1. Sign In</h4>
+        <p class="mt-2 text-gray-600">Log in to your account to access available listings.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <h4 class="text-xl font-semibold text-green-600">2. Browse Listings</h4>
+        <p class="mt-2 text-gray-600">View food donations near your location and check availability.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <h4 class="text-xl font-semibold text-green-600">3. Submit Request</h4>
+        <p class="mt-2 text-gray-600">Choose what you need and submit a request for pickup or delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-12 text-center">
+    <h3 class="text-2xl font-bold text-green-700">Ready to Get Started?</h3>
+    <p class="mt-4 text-gray-600">Click below to log in and find food near you.</p>
+    <a href="login.html?role=recipient" class="mt-6 inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Find Food</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <p>© 2025 FeastForward. All rights reserved.</p>
+      <p class="mt-2 md:mt-0">Working towards <span class="font-semibold">SDG 2: Zero Hunger</span>.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
