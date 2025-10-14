@@ -64,5 +64,39 @@
     </div>
   </footer>
 
+  <script>
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // If logged in, load donations
+  if (getQueryParam("loggedIn") === "true") {
+    fetch("data.json")
+      .then(response => response.json())
+      .then(donations => {
+        const list = document.getElementById("donationList");
+        donations.forEach(item => {
+          const card = `
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <h4 class="text-xl font-semibold text-green-600">${item.food}</h4>
+              <p class="mt-2 text-gray-600">Quantity: ${item.qty}</p>
+              <p class="mt-1 text-gray-600">Expires in: ${item.expiry}</p>
+              <p class="mt-1 text-gray-600">Location: ${item.location}</p>
+              <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                Request
+              </button>
+            </div>
+          `;
+          list.innerHTML += card;
+        });
+      });
+  } else {
+    // Hide donations section if not logged in
+    document.getElementById("donationList").parentElement.style.display = "none";
+  }
+</script>
+
+
 </body>
 </html>
