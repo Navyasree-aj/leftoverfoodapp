@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeastForward - Donation Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <div class="space-x-6">
+        <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
+        <a href="donation-form.html" class="text-yellow-500 font-semibold">Donate</a>
+        <a href="recent-donations.html" class="text-gray-700 hover:text-green-600">Recent Donations</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow py-10 px-4 max-w-3xl mx-auto">
+
+    <header class="mb-6 text-center">
+      <h2 class="text-3xl font-bold text-gray-900">Offer a New Donation</h2>
+      <p class="text-gray-600 mt-1">Help reduce food waste and feed the community!</p>
+    </header>
+
+    <section class="bg-white shadow-lg rounded-xl p-6">
+      <form id="donation-form" class="space-y-4">
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Food Type</label>
+          <input type="text" name="foodType" placeholder="e.g., Fresh bread, Rice, Curry"
+            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Quantity</label>
+          <input type="text" name="quantity" placeholder="e.g., 20 servings, 10kg"
+            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Pickup Address</label>
+          <textarea name="address" rows="3" placeholder="e.g., Tasty Bites Restaurant, MG Road, City"
+            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Pickup Time</label>
+          <input type="datetime-local" name="pickupTime"
+            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+        </div>
+
+        <button type="submit"
+          class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
+          Submit Donation
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-800 text-white py-6 mt-auto text-center">
+    © 2025 FeastForward. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('donation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Thank you! Your donation has been recorded.");
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>

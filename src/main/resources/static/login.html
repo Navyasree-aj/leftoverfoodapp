@@ -14,10 +14,6 @@
       <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
       <div class="space-x-6">
         <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
-        <a href="donor.html" class="text-gray-700 hover:text-green-600">Donor</a>
-        <a href="recipient.html" class="text-gray-700 hover:text-green-600">Recipient</a>
-        <a href="volunteer.html" class="text-gray-700 hover:text-green-600">Volunteer</a>
-        <a href="login.html" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">Login</a>
       </div>
     </div>
   </nav>
@@ -27,7 +23,7 @@
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mt-8">
       <h2 class="text-2xl font-bold text-center text-green-600 mb-6">Login</h2>
 
-      <form action="/login" method="POST" class="space-y-4">
+      <form class="space-y-4" id="loginForm">
         <!-- Email -->
         <div>
           <label for="email" class="block text-gray-700">Email</label>
@@ -64,6 +60,45 @@
       </p>
     </div>
   </main>
+
+  <script>
+document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault(); // prevent default form submit
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const response = await fetch("http://localhost:8080/users/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            const role = data.role;
+
+            // Redirect based on role
+            if (role === "DONOR") {
+                window.location.href = "donor.html";
+            } else if (role === "RECEIVER") {
+                window.location.href = "receiver.html";
+            } else if (role === "ADMIN") {
+                window.location.href = "admin-dashboard.html";
+            } else {
+                alert("Unknown role");
+            }
+        } else {
+            alert(data.message); // show error from backend
+        }
+    } catch (err) {
+        alert("Server error. Try again later.");
+        console.error(err);
+    }
+});
+</script>
 
 </body>
 
