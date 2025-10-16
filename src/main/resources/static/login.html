@@ -23,7 +23,7 @@
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mt-8">
       <h2 class="text-2xl font-bold text-center text-green-600 mb-6">Login</h2>
 
-      <form action="/login" method="POST" class="space-y-4">
+      <form class="space-y-4" id="loginForm">
         <!-- Email -->
         <div>
           <label for="email" class="block text-gray-700">Email</label>
@@ -82,9 +82,9 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
             // Redirect based on role
             if (role === "DONOR") {
-                window.location.href = "donor-dashboard.html";
+                window.location.href = "donor.html";
             } else if (role === "RECEIVER") {
-                window.location.href = "receiver-dashboard.html";
+                window.location.href = "receiver.html";
             } else if (role === "ADMIN") {
                 window.location.href = "admin-dashboard.html";
             } else {
