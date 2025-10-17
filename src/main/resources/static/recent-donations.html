@@ -59,11 +59,11 @@
           card.className = "bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1";
 
           card.innerHTML = `
-            <img src="http://localhost:8080/${donation.imagePath}" alt="${donation.foodName}" 
-                 class="w-full h-56 object-cover">
+            <img src="${donation.imagePath}" alt="${donation.foodName}"
+              class="w-full h-56 object-cover">
             <div class="p-5">
               <h3 class="text-xl font-semibold text-gray-800">${donation.foodName}</h3>
-              <p class="text-gray-600 mt-2">${donation.description}</p>
+              <p class="text-gray-600 mt-2">Quantity: ${donation.quantity}</p>
             </div>
           `;
 

@@ -1,15 +1,22 @@
 package com.feastforward.leftoverfoodapp.controller;
 
-import com.feastforward.leftoverfoodapp.model.Donation;
-import com.feastforward.leftoverfoodapp.repository.DonationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.feastforward.leftoverfoodapp.model.Donation;
+import com.feastforward.leftoverfoodapp.repository.DonationRepository;
 
 @RestController
 @RequestMapping("/api/donations")
@@ -38,7 +45,8 @@ public class DonationController {
         foodPhoto.transferTo(new File(filePath));
 
         // Save donation info in DB
-        Donation donation = new Donation(foodType, quantity, address, pickupTime, filePath, null);
+        String webPath = "/uploads/" + foodPhoto.getOriginalFilename();
+        Donation donation = new Donation(foodType, quantity, address, pickupTime, webPath, null);
         donationRepository.save(donation);
 
         return ResponseEntity.ok("Donation saved successfully with image: " + filePath);
