@@ -8,10 +8,14 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-  <!-- Header / Navbar -->
+  <!-- Navbar with Logo -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <!-- Logo + Title -->
+      <div class="flex items-center space-x-3">
+        <img src="images/logo.png" alt="FeastForward Logo" class="h-10 w-10 rounded-full" />
+        <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      </div>
       <div class="space-x-6">
         <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
       </div>
@@ -61,6 +65,14 @@
     </div>
   </main>
 
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <p>© 2025 FeastForward. All rights reserved.</p>
+      <p class="mt-2 md:mt-0">Working towards <span class="font-semibold">SDG 2: Zero Hunger</span>.</p>
+    </div>
+  </footer>
+
   <script>
 document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault(); // prevent default form submit
@@ -84,7 +96,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             if (role === "DONOR") {
                 window.location.href = "donor.html";
             } else if (role === "RECEIVER") {
-                window.location.href = "receiver.html";
+                window.location.href = "recipient.html";
             } else if (role === "ADMIN") {
                 window.location.href = "admin-dashboard.html";
             } else {
@@ -101,13 +113,5 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 </script>
 
 </body>
-
-<!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6 mt-auto">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-      <p>© 2025 FeastForward. All rights reserved.</p>
-      <p class="mt-2 md:mt-0">Working towards <span class="font-semibold">SDG 2: Zero Hunger</span>.</p>
-    </div>
-  </footer>
-  
 </html>
+

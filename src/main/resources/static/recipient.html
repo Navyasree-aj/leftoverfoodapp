@@ -11,7 +11,10 @@
   <!-- Navbar -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <!-- Logo Only: matches donor page -->
+      <a href="index.html" class="flex items-center h-32">
+        <img src="images/logo.png" alt="Logo" class="h-full w-auto">
+      </a>
       <div class="space-x-6">
         <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
         <a href="donor.html" class="text-gray-700 hover:text-green-600">Donor</a>
@@ -49,6 +52,12 @@
     </div>
   </section>
 
+  <!-- Donations Section -->
+  <section class="py-12 max-w-6xl mx-auto px-6">
+    <h3 class="text-2xl font-bold text-green-700 text-center mb-6">Available Food Donations</h3>
+    <div id="donationList" class="grid md:grid-cols-3 gap-6"></div>
+  </section>
+
   <!-- Call to Action -->
   <section class="py-12 text-center">
     <h3 class="text-2xl font-bold text-green-700">Ready to Get Started?</h3>
@@ -65,36 +74,36 @@
   </footer>
 
   <script>
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
 
-  // If logged in, load donations
-  if (getQueryParam("loggedIn") === "true") {
-    fetch("data.json")
-      .then(response => response.json())
-      .then(donations => {
-        const list = document.getElementById("donationList");
-        donations.forEach(item => {
-          const card = `
-            <div class="bg-white p-6 rounded-xl shadow-md">
-              <h4 class="text-xl font-semibold text-green-600">${item.food}</h4>
-              <p class="mt-2 text-gray-600">Quantity: ${item.qty}</p>
-              <p class="mt-1 text-gray-600">Expires in: ${item.expiry}</p>
-              <p class="mt-1 text-gray-600">Location: ${item.location}</p>
-              <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-                Request
-              </button>
-            </div>
-          `;
-          list.innerHTML += card;
+    // If logged in, load donations
+    if (getQueryParam("loggedIn") === "true") {
+      fetch("data.json")
+        .then(response => response.json())
+        .then(donations => {
+          const list = document.getElementById("donationList");
+          donations.forEach(item => {
+            const card = `
+              <div class="bg-white p-6 rounded-xl shadow-md">
+                <h4 class="text-xl font-semibold text-green-600">${item.food}</h4>
+                <p class="mt-2 text-gray-600">Quantity: ${item.qty}</p>
+                <p class="mt-1 text-gray-600">Expires in: ${item.expiry}</p>
+                <p class="mt-1 text-gray-600">Location: ${item.location}</p>
+                <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                  Request
+                </button>
+              </div>
+            `;
+            list.innerHTML += card;
+          });
         });
-      });
-  } else {
-    // Hide donations section if not logged in
-    document.getElementById("donationList").parentElement.style.display = "none";
-  }
-</script>
+    } else {
+      // Hide donations section if not logged in
+      document.getElementById("donationList").parentElement.style.display = "none";
+    }
+  </script>
 </body>
 </html>

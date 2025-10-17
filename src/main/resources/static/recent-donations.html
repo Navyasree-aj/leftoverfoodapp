@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FeastForward - Recent Donations</title>
+  <title>Recent Donations</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
 
- <!-- Navbar -->
+  <!-- Navbar -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <!-- Logo Only -->
+      <a href="index.html" class="flex items-center">
+        <div class="h-32 flex items-center">
+          <img src="images/logo.png" alt="Logo" class="max-h-full w-auto">
+        </div>
+      </a>
       <div class="space-x-6">
         <a href="donor.html" class="text-gray-700 hover:text-green-600">Donations</a>
         <a href="recent-donations.html" class="text-yellow-500 font-semibold">Recent Donations</a>
@@ -29,7 +34,7 @@
     </section>
   </main>
 
- <!-- Footer -->
+  <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 mt-auto">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
       <p>© 2025 FeastForward. All rights reserved.</p>
@@ -37,6 +42,7 @@
     </div>
   </footer>
 
+  <!-- JS: Load Donations -->
   <script>
     async function loadDonations() {
       const donationList = document.getElementById('donationList');
@@ -53,7 +59,6 @@
         }
 
         donationList.innerHTML = '';
-
         donations.forEach(donation => {
           const card = document.createElement('div');
           card.className = "bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1";
@@ -66,7 +71,6 @@
               <p class="text-gray-600 mt-2">${donation.description}</p>
             </div>
           `;
-
           donationList.appendChild(card);
         });
       } catch (error) {
@@ -76,5 +80,6 @@
 
     loadDonations();
   </script>
+
 </body>
 </html>

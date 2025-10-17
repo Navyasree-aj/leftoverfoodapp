@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FeastForward - Donor</title>
+  <title>Donor Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-   <!-- Navbar -->
+  <!-- Navbar -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <!-- Logo Only -->
+      <a href="index.html" class="flex items-center">
+        <div class="h-32 flex items-center"> <!-- larger logo container -->
+          <img src="images/logo.png" alt="Logo" class="max-h-full w-auto">
+        </div>
+      </a>
       <div class="space-x-6">
         <a href="donor.html" class="text-yellow-500 font-semibold">Donations</a>
         <a href="recent-donations.html" class="text-gray-700 hover:text-green-600">Recent Donations</a>
@@ -33,7 +38,6 @@
 
   <!-- MAIN CONTENT -->
   <main class="flex-grow py-10 px-4 max-w-7xl mx-auto">
-
     <!-- Greeting -->
     <header class="mb-8">
       <h2 class="text-3xl font-bold text-gray-900">Welcome, Donor 👋</h2>
@@ -43,60 +47,57 @@
     <!-- GRID: Donation Form + Past Donations -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
- <!-- Donation Form -->
-<section class="md:col-span-2 bg-white shadow-lg rounded-xl p-6">
-  <h3 class="text-xl font-semibold text-gray-800 mb-4">Offer a New Donation</h3>
-  <form id="donation-form" class="space-y-4" enctype="multipart/form-data">
+      <!-- Donation Form -->
+      <section class="md:col-span-2 bg-white shadow-lg rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Offer a New Donation</h3>
+        <form id="donation-form" class="space-y-4" enctype="multipart/form-data">
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Food Type</label>
-      <input type="text" name="foodType" placeholder="e.g., Fresh bread, Rice, Curry"
-        class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
-    </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Food Type</label>
+            <input type="text" name="foodType" placeholder="e.g., Fresh bread, Rice, Curry"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Quantity</label>
-      <input type="text" name="quantity" placeholder="e.g., 20 servings, 10kg"
-        class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
-    </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input type="text" name="quantity" placeholder="e.g., 20 servings, 10kg"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Pickup Address</label>
-      <textarea name="address" rows="3" placeholder="e.g., Tasty Bites Restaurant, MG Road, City"
-        class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required></textarea>
-    </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Pickup Address</label>
+            <textarea name="address" rows="3" placeholder="e.g., Tasty Bites Restaurant, MG Road, City"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required></textarea>
+          </div>
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Pickup Time</label>
-      <input type="datetime-local" name="pickupTime"
-        class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
-    </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Pickup Time</label>
+            <input type="datetime-local" name="pickupTime"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Upload Photo of Food</label>
-      <input type="file" name="foodPhoto" accept="image/*"
-        class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
-    </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Upload Photo of Food</label>
+            <input type="file" name="foodPhoto" accept="image/*"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
 
-    <button type="submit"
-      class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
-      Submit Donation
-    </button>
-  </form>
-</section>
-
+          <button type="submit"
+            class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
+            Submit Donation
+          </button>
         </form>
       </section>
 
       <!-- Past Donations -->
-  <aside class="bg-white shadow-lg rounded-xl p-6">
-    <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Recent Donations</h3>
-    <ul class="space-y-4 text-sm">
-      <li>
-        <p class="text-gray-500 italic">Your recent donations will appear here…</p>
-      </li>
-    </ul>
-  </aside>
+      <aside class="bg-white shadow-lg rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Recent Donations</h3>
+        <ul class="space-y-4 text-sm">
+          <li>
+            <p class="text-gray-500 italic">Your recent donations will appear here…</p>
+          </li>
+        </ul>
+      </aside>
 
     </div>
   </main>
@@ -109,35 +110,32 @@
     </div>
   </footer>
 
-  <!-- JS: Simple form handler (demo only) -->
+  <!-- JS: Form submission demo -->
   <script>
     document.getElementById('donation-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
+      e.preventDefault();
+      const formData = new FormData(this);
 
-    const formData = new FormData(this); // includes file + other fields
-
-    try {
-        const response = await fetch("http://localhost:8080/api/donations/upload", { // make sure this matches your Spring endpoint
-            method: "POST",
-            body: formData
+      try {
+        const response = await fetch("http://localhost:8080/api/donations/upload", {
+          method: "POST",
+          body: formData
         });
 
         if (response.ok) {
-            const data = await response.text(); // backend returns a string message
-            alert("Thank you! Your donation has been recorded.\n" + data);
-            this.reset();
+          const data = await response.text();
+          alert("Thank you! Your donation has been recorded.\n" + data);
+          this.reset();
         } else {
-            const errorText = await response.text();
-            alert("Error submitting donation: " + errorText);
+          const errorText = await response.text();
+          alert("Error submitting donation: " + errorText);
         }
-
-    } catch (err) {
+      } catch (err) {
         console.error(err);
         alert("Server error. Try again later.");
-    }
-});
-</script>
+      }
+    });
+  </script>
 
 </body>
 </html>
-

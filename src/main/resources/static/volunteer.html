@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FeastForward - Volunteer</title>
+  <title>Volunteer Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
@@ -11,13 +11,16 @@
 <!-- Navbar -->
 <nav class="bg-white shadow-md">
   <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+    <!-- Logo Only: matches donor page -->
+    <a href="index.html" class="flex items-center h-32">
+      <img src="images/logo.png" alt="Logo" class="h-full w-auto">
+    </a>
     <div class="space-x-6">
       <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
       <a href="donor.html" class="text-gray-700 hover:text-green-600">Donor</a>
       <a href="recipient.html" class="text-gray-700 hover:text-green-600">Recipient</a>
       <a href="volunteer.html" class="text-yellow-500 font-semibold">Volunteer</a>
-      <a href="login.html" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">Login</a>
+      <a href="signin.html" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">Login</a>
     </div>
   </div>
 </nav>
@@ -151,7 +154,7 @@ document.getElementById('join-form').addEventListener('submit', function(e){
     place:data.location,
     age:data.age,
     availability:"Anytime",
-    phone:data.phone, // internal use only
+    phone:data.phone,
     email:data.email
   });
   localStorage.setItem("ff_volunteers", JSON.stringify(volunteers));
@@ -163,3 +166,4 @@ document.getElementById('join-form').addEventListener('submit', function(e){
 </script>
 </body>
 </html>
+

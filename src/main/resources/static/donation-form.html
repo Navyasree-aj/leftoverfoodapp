@@ -11,15 +11,27 @@
   <!-- Navbar -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      
+      <!-- Left side: Logo + Title -->
+      <div class="flex items-center space-x-3">
+        <!-- 👇 Make sure your logo file exists at src/main/resources/static/images/logo.png -->
+        <img src="images/logo.png" alt="FeastForward Logo" class="h-10 w-10 rounded-full" />
+        <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      </div>
+
+      <!-- Right side: Navigation Links -->
       <div class="space-x-6">
         <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
         <a href="donation-form.html" class="text-yellow-500 font-semibold">Donate</a>
         <a href="recent-donations.html" class="text-gray-700 hover:text-green-600">Recent Donations</a>
+        <a href="donor.html" class="text-gray-700 hover:text-green-600">Donors</a>
+        <a href="recipient.html" class="text-gray-700 hover:text-green-600">Recipients</a>
+        <a href="volunteer.html" class="text-gray-700 hover:text-green-600">Volunteers</a>
       </div>
     </div>
   </nav>
 
+  <!-- Main Content -->
   <main class="flex-grow py-10 px-4 max-w-3xl mx-auto">
 
     <header class="mb-6 text-center">
@@ -63,10 +75,12 @@
 
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 mt-auto text-center">
     © 2025 FeastForward. All rights reserved.
   </footer>
 
+  <!-- JavaScript -->
   <script>
     document.getElementById('donation-form').addEventListener('submit', function(e) {
       e.preventDefault();

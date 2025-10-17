@@ -1,101 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FeastForward — Sign up</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
-      <div class="space-x-4">
-        <a href="index.html" class="text-gray-700 hover:text-green-600">Home</a>
-        <a href="signin.html" class="text-gray-700 hover:text-green-600">Sign in</a>
-      </div>
+      <!-- Logo Only -->
+      <a href="index.html" class="flex items-center">
+        <div class="h-32 flex items-center">
+          <img src="images/logo.png" alt="Logo" class="max-h-full w-auto">
+        </div>
+      </a>
     </div>
   </nav>
 
-  <!-- MAIN -->
-  <main class="flex-grow flex items-start justify-center py-12 px-4">
-    <div class="w-full max-w-3xl bg-white rounded-xl shadow-lg p-6">
+  <!-- Login Form -->
+  <main class="flex-grow flex items-center justify-center px-4">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mt-8">
 
-      <!-- Header -->
-      <header class="text-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-900">Create your account</h2>
-        <p class="text-gray-600 mt-2">Join FeastForward as a donor, recipient, or volunteer</p>
-      </header>
+      <h2 class="text-2xl font-bold text-center text-green-600 mb-6">Login</h2>
 
-      <!-- Role Tabs -->
-      <div id="role-tabs" class="flex justify-center gap-3 mb-6">
-        <button data-role="donor" class="role-tab px-4 py-2 rounded-lg bg-green-600 text-white font-semibold">Donor</button>
-        <button data-role="recipient" class="role-tab px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200">Recipient</button>
-        <button data-role="volunteer" class="role-tab px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200">Volunteer</button>
-      </div>
-
-      <!-- Register Form -->
-      <form id="signup-form" class="space-y-4">
-        <input type="hidden" name="role" id="role" value="donor" />
-
+      <form id="loginForm" class="space-y-4">
+        <!-- Email -->
         <div>
-          <label class="block text-sm font-medium text-gray-700">Full Name</label>
-          <input id="name" type="text" placeholder="Enter your full name" required
-            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" />
+          <label for="email" class="block text-gray-700">Email</label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
         </div>
 
+        <!-- Password -->
         <div>
-          <label class="block text-sm font-medium text-gray-700">Email</label>
-          <input id="email" type="email" placeholder="Enter your email" required
-            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" />
+          <label for="password" class="block text-gray-700">Password</label>
+          <input type="password" id="password" name="password" required
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
         </div>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-          <input id="phone" type="text" placeholder="+91XXXXXXXXXX"
-            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" />
+        <!-- Remember Me + Forgot Password -->
+        <div class="flex items-center justify-between text-sm text-gray-600">
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Remember Me
+          </label>
+          <a href="#" class="text-green-600 hover:underline">Forgot Password?</a>
         </div>
-
-        <div id="donor-fields">
-          <label class="block text-sm font-medium text-gray-700">Business / Event Name (optional)</label>
-          <input id="business" type="text" placeholder="e.g., Tasty Bites Restaurant"
-            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Password</label>
-          <input id="password" type="password" placeholder="Enter a strong password" required
-            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Confirm Password</label>
-          <input id="confirm-password" type="password" placeholder="Re-enter password" required
-            class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" />
-        </div>
-
-        <!-- Feedback -->
-        <p id="feedback" class="text-center text-sm text-red-600 mt-2 hidden"></p>
-        <p id="success" class="text-center text-sm text-green-600 mt-2 hidden"></p>
 
         <!-- Submit -->
-        <div class="pt-3">
-          <button type="submit"
-            class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
-            Sign up
-          </button>
-        </div>
+        <button type="submit"
+          class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
+          Login
+        </button>
       </form>
 
-      <p class="text-center text-sm text-gray-600 mt-4">
-        Already have an account?
-        <a href="signin.html" class="text-green-600 hover:underline">Sign in</a>
+      <p class="text-sm text-center text-gray-600 mt-4">
+        Don’t have an account?
+        <a href="signup.html" class="text-green-600 hover:underline">Sign Up</a>
       </p>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 mt-auto">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
       <p>© 2025 FeastForward. All rights reserved.</p>
@@ -104,87 +72,37 @@
   </footer>
 
   <script>
-    const tabs = document.querySelectorAll('.role-tab');
-    const roleInput = document.getElementById('role');
-    const donorFields = document.getElementById('donor-fields');
-    const form = document.getElementById('signup-form');
-    const feedback = document.getElementById('feedback');
-    const success = document.getElementById('success');
-
-    let activeRole = "donor";
-
-    function setActiveRole(role) {
-      activeRole = role;
-      roleInput.value = role;
-
-      tabs.forEach(t => {
-        if (t.dataset.role === role) {
-          t.classList.add('bg-green-600', 'text-white');
-          t.classList.remove('bg-gray-100', 'text-gray-700');
-        } else {
-          t.classList.remove('bg-green-600', 'text-white');
-          t.classList.add('bg-gray-100', 'text-gray-700');
-        }
-      });
-
-      donorFields.style.display = (role === 'donor') ? 'block' : 'none';
-    }
-
-    tabs.forEach(t => t.addEventListener('click', () => setActiveRole(t.dataset.role)));
-    setActiveRole(activeRole);
-
-    form.addEventListener('submit', async (e) => {
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      feedback.classList.add('hidden');
-      success.classList.add('hidden');
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const confirmPassword = document.getElementById('confirm-password').value.trim();
-      const business = document.getElementById('business').value.trim();
-
-      if (password !== confirmPassword) {
-        feedback.textContent = "Passwords do not match!";
-        feedback.classList.remove("hidden");
-        return;
-      }
-
-      const userData = {
-        name,
-        email,
-        phone,
-        password,
-        role: activeRole.toUpperCase(),
-        businessName: (activeRole === "donor") ? business : null
-      };
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
       try {
-        const response = await fetch("http://localhost:8080/users/register", {
+        const response = await fetch("http://localhost:8080/users/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData)
+          body: JSON.stringify({ email, password })
         });
 
+        const data = await response.json();
+
         if (response.ok) {
-          success.textContent = "Registration successful! Redirecting to sign-in...";
-          success.classList.remove("hidden");
-          form.reset();
-          setTimeout(() => {
-            window.location.href = "signin.html";
-          }, 2000);
+          const role = data.role;
+          if (role === "DONOR") window.location.href = "donor.html";
+          else if (role === "RECEIVER") window.location.href = "receiver.html";
+          else if (role === "ADMIN") window.location.href = "admin-dashboard.html";
+          else alert("Unknown role");
         } else {
-          const errorData = await response.json();
-          feedback.textContent = errorData.message || "Registration failed!";
-          feedback.classList.remove("hidden");
+          alert(data.message);
         }
       } catch (err) {
-        feedback.textContent = "Server error. Please try again later.";
-        feedback.classList.remove("hidden");
+        alert("Server error. Try again later.");
         console.error(err);
       }
     });
   </script>
+
 </body>
 </html>
+

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FeastForward - Home</title>
+  <title>Donor Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
@@ -11,74 +11,94 @@
   <!-- Navbar -->
   <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
+      <!-- Logo Only -->
+      <a href="index.html" class="flex items-center h-32"> <!-- bigger container -->
+        <img src="images/logo.png" alt="Logo" class="h-full w-auto"> <!-- logo fills container -->
+      </a>
       <div class="space-x-6">
-        <a href="index.html" class="text-yellow-500 font-semibold">Home</a>
-        <a href="login.html" class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">Login</a>
+        <a href="donor.html" class="text-yellow-500 font-semibold">Donations</a>
+        <a href="recent-donations.html" class="text-gray-700 hover:text-green-600">Recent Donations</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="bg-green-100 py-16 text-center">
-    <h2 class="text-4xl font-bold text-green-700">Connecting Surplus Food with Those in Need</h2>
-    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
-      FeastForward helps restaurants, grocery stores, and event organizers share leftover food with recipients and communities — reducing waste and fighting hunger.
-    </p>
-
-  </section>
-
-  <!-- About Section -->
-  <section class="py-12 max-w-6xl mx-auto text-center">
-    <h3 class="text-2xl font-bold text-green-700">About FeastForward</h3>
-    <p class="mt-4 text-gray-600 max-w-3xl mx-auto">
-      Every year, tons of food goes to waste while many people go hungry. FeastForward bridges this gap by connecting donors, recipients, and volunteers to ensure surplus food reaches the right hands.
-      Together, we contribute to <span class="font-semibold">UN SDG 2: Zero Hunger</span>.
-    </p>
-  </section>
-
-  <!-- How It Works -->
-  <section class="bg-gray-100 py-12">
-    <h3 class="text-2xl font-bold text-center text-green-700">How It Works</h3>
-    <div class="mt-8 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h4 class="text-xl font-semibold text-green-600">1. Donors List Food</h4>
-        <p class="mt-2 text-gray-600">Restaurants, events, and groceries upload surplus food details.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h4 class="text-xl font-semibold text-green-600">2. Recipients Request</h4>
-        <p class="mt-2 text-gray-600">Individuals or NGOs request available food nearby.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <h4 class="text-xl font-semibold text-green-600">3. Volunteers Deliver</h4>
-        <p class="mt-2 text-gray-600">Trained volunteers handle pickups and deliveries.</p>
-      </div>
+  <!-- WHY DONATE -->
+  <section class="bg-green-50 border-b border-green-200 py-10 px-6 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-green-700">Why Donate?</h2>
+      <p class="text-gray-700 mt-4 text-lg">
+        Every meal you share helps reduce food waste and feed someone in need.  
+        By donating surplus food, you’re supporting <span class="font-semibold">Zero Hunger (SDG 2)</span>  
+        and building a more sustainable, compassionate community.
+      </p>
     </div>
   </section>
 
-  <!-- Roles Section -->
-  <section class="py-12 max-w-6xl mx-auto">
-    <h3 class="text-2xl font-bold text-center text-green-700">Join FeastForward</h3>
-    <div class="mt-8 grid md:grid-cols-3 gap-8 px-6">
-      <div class="bg-white p-6 rounded-xl shadow-md text-center">
-        <h4 class="text-xl font-semibold text-green-600">Donor</h4>
-        <p class="mt-2 text-gray-600">Share your surplus food with those who need it.</p>
-        <a href="login.html?role=donor" class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Donate Food</a>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md text-center">
-        <h4 class="text-xl font-semibold text-green-600">Recipient</h4>
-        <p class="mt-2 text-gray-600">Get access to safe and fresh food near you.</p>
-        <a href="login.html?role=recipient" class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">Find Food</a>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md text-center">
-        <h4 class="text-xl font-semibold text-green-600">Volunteer</h4>
-        <p class="mt-2 text-gray-600">Help deliver food and support your community.</p>
-        <a href="login.html?role=volunteer" class="mt-4 inline-block bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">Join Now</a>
-      </div>
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow py-10 px-4 max-w-7xl mx-auto">
+    <!-- Greeting -->
+    <header class="mb-8">
+      <h2 class="text-3xl font-bold text-gray-900">Welcome, Donor 👋</h2>
+      <p class="text-gray-600 mt-1">Thank you for helping reduce food waste and support the community.</p>
+    </header>
+
+    <!-- GRID: Donation Form + Past Donations -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Donation Form -->
+      <section class="md:col-span-2 bg-white shadow-lg rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Offer a New Donation</h3>
+        <form id="donation-form" class="space-y-4" enctype="multipart/form-data">
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Food Type</label>
+            <input type="text" name="foodType" placeholder="e.g., Fresh bread, Rice, Curry"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input type="text" name="quantity" placeholder="e.g., 20 servings, 10kg"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Pickup Address</label>
+            <textarea name="address" rows="3" placeholder="e.g., Tasty Bites Restaurant, MG Road, City"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Pickup Time</label>
+            <input type="datetime-local" name="pickupTime"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Upload Photo of Food</label>
+            <input type="file" name="foodPhoto" accept="image/*"
+              class="mt-1 block w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-200" required />
+          </div>
+
+          <button type="submit"
+            class="w-full bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700">
+            Submit Donation
+          </button>
+        </form>
+      </section>
+
+      <!-- Past Donations -->
+      <aside class="bg-white shadow-lg rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Recent Donations</h3>
+        <ul class="space-y-4 text-sm">
+          <li>
+            <p class="text-gray-500 italic">Your recent donations will appear here…</p>
+          </li>
+        </ul>
+      </aside>
+
     </div>
-  </section>
-
-
+  </main>
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-6 mt-auto">
@@ -87,5 +107,33 @@
       <p class="mt-2 md:mt-0">Working towards <span class="font-semibold">SDG 2: Zero Hunger</span>.</p>
     </div>
   </footer>
+
+  <!-- JS: Form submission demo -->
+  <script>
+    document.getElementById('donation-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      try {
+        const response = await fetch("http://localhost:8080/api/donations/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          const data = await response.text();
+          alert("Thank you! Your donation has been recorded.\n" + data);
+          this.reset();
+        } else {
+          const errorText = await response.text();
+          alert("Error submitting donation: " + errorText);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Server error. Try again later.");
+      }
+    });
+  </script>
+
 </body>
 </html>
