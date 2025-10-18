@@ -15,20 +15,22 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User registerUser(String username, String email, String password) {
-        // Optionally, check if username or email already exists
-        if(userRepository.findByUsername(username).isPresent()) {
+    public User registerUser(User user) {
+        // Default role
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("USER");
+        }
+
+        // Check for existing username/email
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("Username already taken");
         }
-        if(userRepository.findByEmail(email).isPresent()) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new RuntimeException("Email already registered");
         }
 
-        User user = new User();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password)); // Hash password
-        user.setRole("USER");
+        // Hash password
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
     }

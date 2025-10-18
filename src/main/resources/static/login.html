@@ -83,10 +83,10 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             // Redirect based on role
             if (role === "DONOR") {
                 window.location.href = "donor.html";
-            } else if (role === "RECEIVER") {
-                window.location.href = "receiver.html";
-            } else if (role === "ADMIN") {
-                window.location.href = "admin-dashboard.html";
+            } else if (role === "RECIPIENT") {
+                window.location.href = "recipient.html";
+            } else if (role === "VOLUNTEER") {
+                window.location.href = "volunteer.html";
             } else {
                 alert("Unknown role");
             }
