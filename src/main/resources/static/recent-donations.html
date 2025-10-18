@@ -13,7 +13,6 @@
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-green-600">FeastForward</h1>
       <div class="space-x-6">
-      <!-- <a href="donor.html" class="text-gray-700 hover:text-green-600">Donations</a>-->
         <a href="recent-donations.html" class="text-yellow-500 font-semibold">Recent Donations</a>
       </div>
     </div>
@@ -38,6 +37,33 @@
   </footer>
 
   <script>
+    // Calculate freshness percentage based on pickupTime
+    function calculateFreshness(pickupTime) {
+      const now = new Date();
+      const pickup = new Date(pickupTime);
+      const diffMs = now - pickup; // difference in milliseconds
+      const diffHours = diffMs / (1000 * 60 * 60);
+
+      // Example logic: freshness 100% at pickup, 0% after 24 hours
+      const freshness = Math.max(0, Math.round(100 - (diffHours / 24) * 100));
+      return freshness;
+    }
+
+    function createDonationCard(donation) {
+      const card = document.createElement('div');
+      card.className = "bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1";
+
+      card.innerHTML = `
+        <img src="${donation.imagePath}" alt="${donation.foodName}" class="w-full h-56 object-cover">
+        <div class="p-5">
+          <h3 class="text-xl font-semibold text-gray-800">${donation.foodName}</h3>
+          <p class="text-gray-600 mt-2">Quantity: ${donation.quantity}</p>
+          <p class="text-green-600 font-semibold mt-2 freshness" data-pickup="${donation.pickupTime}"></p>
+        </div>
+      `;
+      return card;
+    }
+
     async function loadDonations() {
       const donationList = document.getElementById('donationList');
       donationList.innerHTML = '<p class="col-span-full text-center text-gray-500 text-lg">Loading recent donations...</p>';
@@ -53,25 +79,27 @@
         }
 
         donationList.innerHTML = '';
-
         donations.forEach(donation => {
-          const card = document.createElement('div');
-          card.className = "bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1";
-
-          card.innerHTML = `
-            <img src="${donation.imagePath}" alt="${donation.foodName}"
-              class="w-full h-56 object-cover">
-            <div class="p-5">
-              <h3 class="text-xl font-semibold text-gray-800">${donation.foodName}</h3>
-              <p class="text-gray-600 mt-2">Quantity: ${donation.quantity}</p>
-            </div>
-          `;
-
+          const card = createDonationCard(donation);
           donationList.appendChild(card);
         });
+
+        updateFreshness();
+        setInterval(updateFreshness, 60 * 60 * 1000); // refresh every hour
+
       } catch (error) {
         donationList.innerHTML = `<p class="col-span-full text-center text-red-500 text-lg">Error: ${error.message}</p>`;
       }
+    }
+
+    // Update freshness text for all cards
+    function updateFreshness() {
+      const freshnessElements = document.querySelectorAll('.freshness');
+      freshnessElements.forEach(el => {
+        const pickupTime = el.dataset.pickup;
+        const freshness = calculateFreshness(pickupTime);
+        el.textContent = `Freshness: ${freshness}%`;
+      });
     }
 
     loadDonations();
