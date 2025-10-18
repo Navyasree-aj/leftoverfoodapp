@@ -24,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = true)
+    private String phone;  // Added phone column
+
     private String role = "USER";
 
     // Getters and Setters
@@ -38,6 +41,9 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }

@@ -1,47 +1,55 @@
 package com.feastforward.leftoverfoodapp.controller;
 
+import com.feastforward.leftoverfoodapp.model.User;
+import com.feastforward.leftoverfoodapp.repository.UserRepository;
+import com.feastforward.leftoverfoodapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.feastforward.leftoverfoodapp.model.User;
-import com.feastforward.leftoverfoodapp.repository.UserRepository;
-
-import java.util.Map;  // <- IMPORTANT import
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://127.0.0.1:5500") 
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class AuthController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
 
     // --- Register a new user ---
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User user) {
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully!");
+    public ResponseEntity<Map<String, String>> registerUser(@RequestBody User user) {
+        try {
+            User savedUser = userService.registerUser(user);
+            return ResponseEntity.ok(Map.of(
+                    "message", "User registered successfully",
+                    "role", savedUser.getRole()
+            ));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
+        }
     }
 
     // --- Login check ---
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> loginUser(@RequestBody User user) { // <-- changed return type
+    public ResponseEntity<Map<String, String>> loginUser(@RequestBody User user) {
         return userRepository.findByEmail(user.getEmail())
                 .map(existingUser -> {
-                    if (!existingUser.getPassword().equals(user.getPassword())) {
-                        Map<String, String> response = Map.of("message", "Invalid password");
-                        return ResponseEntity.badRequest().body(response);
+                    // Compare password using BCrypt
+                    if (!new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder()
+                            .matches(user.getPassword(), existingUser.getPassword())) {
+                        return ResponseEntity.badRequest().body(Map.of("message", "Invalid password"));
                     }
-                    Map<String, String> response = Map.of(
+
+                    return ResponseEntity.ok(Map.of(
                             "message", "Login successful",
                             "role", existingUser.getRole()
-                    );
-                    return ResponseEntity.ok(response);
+                    ));
                 })
-                .orElseGet(() -> {
-                    Map<String, String> response = Map.of("message", "User not found");
-                    return ResponseEntity.badRequest().body(response);
-                });
+                .orElseGet(() -> ResponseEntity.badRequest().body(Map.of("message", "User not found")));
     }
 }

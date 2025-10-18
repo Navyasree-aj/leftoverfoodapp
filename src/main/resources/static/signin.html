@@ -115,7 +115,7 @@
 
     function setActiveRole(role) {
       activeRole = role;
-      roleInput.value = role;
+      roleInput.value = role.toUpperCase();
 
       tabs.forEach(t => {
         if (t.dataset.role === role) {
@@ -152,7 +152,7 @@
       }
 
       const userData = {
-        name,
+        username: name,
         email,
         phone,
         password,
@@ -168,13 +168,27 @@
         });
 
         if (response.ok) {
-          success.textContent = "Registration successful! Redirecting to sign-in...";
-          success.classList.remove("hidden");
-          form.reset();
-          setTimeout(() => {
-            window.location.href = "signin.html";
-          }, 2000);
+    const data = await response.json(); // get JSON response from backend
+    success.textContent = "Login successful! Redirecting...";
+    success.classList.remove("hidden");
+
+    form.reset();
+
+    setTimeout(() => {
+        // Redirect based on role
+        const role = data.role; // "DONOR", "RECIPIENT", "VOLUNTEER", etc.
+        if (role === "DONOR") {
+            window.location.href = "donor.html";
+        } else if (role === "RECIPIENT") {
+            window.location.href = "recipient.html";
+        } else if (role === "VOLUNTEER") {
+            window.location.href = "volunteer.html";
         } else {
+            window.location.href = "index.html"; // fallback
+        }
+    }, 1000); // 1 second delay
+}
+ else {
           const errorData = await response.json();
           feedback.textContent = errorData.message || "Registration failed!";
           feedback.classList.remove("hidden");
